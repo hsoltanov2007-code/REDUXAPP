@@ -1,0 +1,47 @@
+{
+  "name": "hardy-desktop",
+  "private": true,
+  "main": "electron/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "electron .",
+    "build": "node -e \"console.log('desktop build not required before packaging')\"",
+    "dist:win": "electron-builder --win nsis portable"
+  },
+  "dependencies": {
+    "electron-log": "^5.2.0",
+    "electron-store": "^10.0.1",
+    "electron-updater": "^6.6.2",
+    "extract-zip": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron": "^35.1.4",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.hardy.modmanager",
+    "productName": "HARDY",
+    "files": [
+      "electron/**/*",
+      "ui/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": ["nsis", "portable"],
+      "artifactName": "HARDY-${version}-${arch}.${ext}"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "hsoltanov2007-code",
+        "repo": "REDUXAPP"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
